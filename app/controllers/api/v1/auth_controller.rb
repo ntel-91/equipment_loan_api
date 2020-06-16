@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
         user = Gym.find_by(account_name: params[:accountName])
         
         if user && user.authenticate(params[:password])
-               
+              
             token = encode_token(user.id)
             # user should be UserSerializer.new(user) instaed of just user -- look up?
             render json: {user: user, token: token}
@@ -14,5 +14,6 @@ class Api::V1::AuthController < ApplicationController
             render json: {errors: "Not found. Try again."}
         end
     end
+
 
 end
